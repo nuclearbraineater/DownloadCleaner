@@ -22,5 +22,12 @@ namespace CleanerLibrary
 
             return false;
         }
+
+        public string[] GetFiles()
+        {
+            var fileEntries = Directory.GetFiles(_directoryProvider.DownloadFolder);
+
+            return fileEntries;
+        }
     }
 }

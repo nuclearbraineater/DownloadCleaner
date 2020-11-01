@@ -7,9 +7,15 @@ namespace DownloadCleanerUI
     {
         static void Main(string[] args)
         {
-            FolderCleaner downloadfolderCleaner = new FolderCleaner();
+            var directoryHelper = new DirectoryHelper(new DirectoryProvider());
+            var fileCatcher = new FileCatcher(directoryHelper);
+            var fileHelper = new FileHelper();
+            FolderCleaner downloadfolderCleaner = new FolderCleaner(fileCatcher, fileHelper);
+            Console.WriteLine("Start DownloadCleaner");
 
-            Console.WriteLine("Hello World!");
+            downloadfolderCleaner.StartFolderCleaning();
+
+
         }
     }
 }

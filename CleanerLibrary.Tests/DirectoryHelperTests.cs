@@ -23,18 +23,29 @@ namespace CleanerLibrary.Tests
         public void FolderExists_ShouldReturnFalse()
         {
             //Arrange
-            var directoryProvider = new DirectoryProvider();
-            directoryProvider.DownloadFolder = "";
+            var directoryProvider = new DirectoryProvider
+            {
+                DownloadFolder = ""
+            };
             var directoryHelper = new DirectoryHelper(directoryProvider);
 
-            //Act Assert
+            //Act //Assert
             Assert.Throws<ArgumentNullException>(() => directoryHelper.DirectoryExists());
-            //var exception = Assert.Throws<ArgumentNullException>(() => directoryHelper.DirectoryExists());
+        }
 
-            //var directoryExists = directoryHelper.DirectoryExists();
+        [Fact]
+        public void GetFilesFromDownloadDirectory_ShouldReturnFiles()
+        {
+            //Arrange
+            var directoryProvider = new DirectoryProvider();
+            var directoryHelper = new DirectoryHelper(directoryProvider);
+            var files = new string[0];
 
-            ////Assert
-            //Assert.False(directoryExists);
+            //Act
+            files = directoryHelper.GetFiles();
+
+            //Assert
+            Assert.True(files.Length > 0);
         }
     }
 }
